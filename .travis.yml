@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+- 6
+- 8
+os:
+- linux
+- osx
+install:
+- npm install --global esy@preview
+- esy install
+script:
+- esy build
+- esy x TestFlow.exe
