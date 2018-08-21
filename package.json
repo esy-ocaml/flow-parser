@@ -8,14 +8,13 @@
       [ "sh", "-c", "cd src/parser && make ocamlfind-install" ]
     ],
     "install": [
-      "esy-installer"
+      ["echo", "self-instaling"]
     ],
     "buildsInSource": true
   },
   "dependencies": {
-    "@esy-ocaml/esy-installer": "^0.0.0",
     "@opam/ocamlfind": "*",
-    "ocaml": "^4.2.x",
+    "ocaml": "^4.2.3",
     "@opam/ocamlbuild": "*"
   },
   "devDependencies": {
