@@ -1,0 +1,8 @@
+regexp.js:2
+  2: var match:number = patt.test("Hello world!");
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^ boolean. This type is incompatible with
+  2: var match:number = patt.test("Hello world!");
+               ^^^^^^ number
+
+
+Found 1 error

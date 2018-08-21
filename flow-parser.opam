@@ -1,13 +1,24 @@
 opam-version: "1.2"
-authors: "Jordan Walke <jordojw@gmail.com>"
 maintainer: "Jordan Walke <jordojw@gmail.com>"
-dev-repo: "https://github.com/esy-ocaml/flow-parser.git"
-homepage: "https://github.com/esy-ocaml/flow-parser"
-bug-reports: "https://github.com/esy-ocaml/flow-parser/issues"
-build: ["jbuilder" "build" "-p" name]
+authors: [
+  "Avik Chaudhuri"
+  "Basil Hosmer"
+  "Gabe Levi"
+  "Jeff Morrison"
+  "Marshall Roch"
+  "Sam Goldman"
+  "James Kyle"
+]
+homepage: "https://github.com/facebook/flow/tree/master/src/parser"
+bug-reports: "https://github.com/facebook/flow/issues"
+license: "BSD3"
+
+build: [ "sh" "-c" "cd src/parser && make ocamlfind-install" ]
+
+remove: ["ocamlfind" "remove" "flow_parser"]
 depends: [
   "ocamlfind" {build}
-  "jbuilder" {build}
-  "sedlex"
-  "wtf8"
+  "ocamlbuild" {build}
 ]
+available: [ocaml-version >= "4.01.0"]
+dev-repo: "https://github.com/facebook/flow.git"

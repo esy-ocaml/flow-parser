@@ -1,0 +1,13 @@
+opam-version: "1.2"
+authors: "Jordan Walke <jordojw@gmail.com>"
+maintainer: "Jordan Walke <jordojw@gmail.com>"
+dev-repo: "https://github.com/esy-ocaml/flow-parser.git"
+homepage: "https://github.com/esy-ocaml/flow-parser"
+bug-reports: "https://github.com/esy-ocaml/flow-parser/issues"
+build: ["jbuilder" "build" "-p" name]
+depends: [
+  "ocamlfind" {build}
+  "jbuilder" {build}
+  "sedlex"
+  "wtf8"
+]

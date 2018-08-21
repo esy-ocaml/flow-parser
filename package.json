@@ -1,28 +1,22 @@
 {
   "name": "@esy-ocaml/flow-parser",
-  "version": "0.76.0",
+  "version": "0.36.0",
   "description": "esy package for flow-parser",
   "license": "MIT",
   "esy": {
     "build": [
-      [
-        "jbuilder",
-        "build"
-      ]
+      [ "sh", "-c", "cd src/parser && make ocamlfind-install" ]
     ],
     "install": [
       "esy-installer"
     ],
-    "buildsInSource": "_build"
+    "buildsInSource": true
   },
   "dependencies": {
-    "@opam/sedlex": "*",	
-    "@opam/wtf8": "*",	
     "@esy-ocaml/esy-installer": "^0.0.0",
-    "@opam/jbuilder": "*"
-  },
-  "peerDependencies": {
-    "ocaml": ">= 4.3.0"
+    "@opam/ocamlfind": "*",
+    "ocaml": "^4.2.x",
+    "@opam/ocamlbuild": "*"
   },
   "devDependencies": {
     "@esy-ocaml/merlin": "*",
