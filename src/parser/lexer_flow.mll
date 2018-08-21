@@ -329,7 +329,7 @@ let debug_string_of_lexbuf (lb: Lexing.lexbuf) =
       lex_start_p = %s; \
       lex_curr_p = %s; \
     }"
-    lb.Lexing.lex_buffer
+    (Bytes.to_string lb.Lexing.lex_buffer)
     lb.Lexing.lex_buffer_len
     lb.Lexing.lex_abs_pos
     lb.Lexing.lex_start_pos
@@ -595,7 +595,7 @@ end
     let rec count start stop acc =
       if start = stop then acc
       else
-        let c = Char.code (lb.Lexing.lex_buffer.[start]) in
+        let c = Char.code ((Bytes.to_string lb.Lexing.lex_buffer).[start]) in
         let acc = if (c land 0xC0) = 0x80
           then acc + 1
           else acc in
