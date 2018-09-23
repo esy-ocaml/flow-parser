@@ -144,6 +144,7 @@ type parse_options = {
   esproposal_export_star_as: bool;
   esproposal_optional_chaining: bool;
   esproposal_nullish_coalescing: bool;
+  types_in_comments: bool;
   types: bool;
   use_strict: bool;
 }
@@ -154,6 +155,7 @@ let default_parse_options = {
   esproposal_export_star_as = false;
   esproposal_optional_chaining = false;
   esproposal_nullish_coalescing = false;
+  types_in_comments = false;
   types = true;
   use_strict = false;
 }
@@ -213,7 +215,7 @@ let init_env ?(token_sink=None) ?(parse_options=None) source content =
     | Some opts -> opts
     | None -> default_parse_options
   in
-  let enable_types_in_comments = parse_options.types in
+  let enable_types_in_comments = parse_options.types && parse_options.types_in_comments in
   let lex_env = Lex_env.new_lex_env source lb ~enable_types_in_comments in
   {
     errors = ref errors;
