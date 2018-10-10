@@ -14,6 +14,19 @@ package, but here's why this exists:
 - Flow's release has a misconfigured META file.
 - This version makes use of dune namespacing to avoid module conflicts.
 
+## Versioning
+
+The table below defines relationship between original Flow versions and
+`@esy-ocaml/flow-parser` (this package) versions.
+
+flow orig version     | `@esy-ocaml/flow-parser` version | If applying fixes to `@esy-ocaml/flow-parser` |
+----------------------|----------------------------------|------------------------------------------
+`0.76.0`              | `0.76.0`                         | `0.76.1`, `0.76.2`, ...
+`0.76.1`              | `0.76.1000`                      | `0.76.1001`, `0.76.1002`, ...
+`0.76.2`              | `0.76.2000`                      | `0.76.2001`, `0.76.2002`, ...
+
+This is done so we can release fixes to the original Flow Parser code which
+include build changes / dependency constraint changes and etc.
 
 ## Consume As Library:
 To consume this as a library, just add `"@esy-ocaml/flow-parser"` as a
