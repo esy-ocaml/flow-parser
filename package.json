@@ -16,8 +16,8 @@
     "buildsInSource": "_build"
   },
   "dependencies": {
-    "@opam/sedlex": "*",	
-    "@opam/wtf8": "*",	
+    "@opam/sedlex": ">=1.99.4",
+    "@opam/wtf8": "*",
     "@esy-ocaml/esy-installer": "^0.0.0",
     "@opam/jbuilder": "*"
   },
