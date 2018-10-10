@@ -1,6 +1,6 @@
 {
   "name": "@esy-ocaml/flow-parser",
-  "version": "0.76.0",
+  "version": "0.76.0-1",
   "description": "esy package for flow-parser",
   "license": "MIT",
   "esy": {
@@ -18,7 +18,6 @@
   "dependencies": {
     "@opam/sedlex": ">=1.99.4",
     "@opam/wtf8": "*",
-    "@esy-ocaml/esy-installer": "^0.0.0",
     "@opam/jbuilder": "*"
   },
   "peerDependencies": {
