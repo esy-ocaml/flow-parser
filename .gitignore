@@ -1,8 +1,9 @@
 *TAGS
 _build
+_esy
 .DS_STORE
 npm-debug.log
-/node_modules/
+node_modules
 *.swp
 *.swo
 *.install
