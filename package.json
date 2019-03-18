@@ -1,6 +1,6 @@
 {
   "name": "@esy-ocaml/flow-parser",
-  "version": "0.76.1001",
+  "version": "0.76.2",
   "description": "esy package for flow-parser",
   "license": "MIT",
   "esy": {
