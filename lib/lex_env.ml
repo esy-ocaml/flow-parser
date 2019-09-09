@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *)
 
+open Flow_parser_sedlex
 
 type t = {
   lex_source            : File_key.t option;

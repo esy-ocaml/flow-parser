@@ -1,0 +1,5 @@
+(executable
+ (name TestFlow)
+ (package flow-parser)
+ (public_name TestFlow.exe)
+ (libraries flow-parser))
