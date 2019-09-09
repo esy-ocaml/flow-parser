@@ -24,7 +24,7 @@
     "@opam/sedlex": ">= 1.99.4 < 2.0"
   },
   "devDependencies": {
-    "@esy-ocaml/merlin": "*",
+    "@opam/merlin": "*",
     "ocaml": "^4.6.0"
   }
 }
