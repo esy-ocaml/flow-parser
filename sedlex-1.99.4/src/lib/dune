@@ -1,0 +1,5 @@
+(library
+ (name Flow_parser_sedlex)
+ (public_name flow-parser.sedlex)
+ (libraries gen uchar)
+ (flags :standard -w +A-4-9 -safe-string))

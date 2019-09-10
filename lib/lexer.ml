@@ -8,6 +8,7 @@
 
 open Token
 open Lex_env
+open Flow_parser_sedlex
 
 let lexeme = Sedlexing.Utf8.lexeme
 let sub_lexeme = Sedlexing.Utf8.sub_lexeme

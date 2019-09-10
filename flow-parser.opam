@@ -4,10 +4,10 @@ maintainer: "Jordan Walke <jordojw@gmail.com>"
 dev-repo: "https://github.com/esy-ocaml/flow-parser.git"
 homepage: "https://github.com/esy-ocaml/flow-parser"
 bug-reports: "https://github.com/esy-ocaml/flow-parser/issues"
-build: ["jbuilder" "build" "-p" name]
+build: ["dune" "build" "-p" name "-j" jobs]
 depends: [
   "ocamlfind" {build}
-  "jbuilder" {build}
+  "dune" {build & >= "1.0"}
   "sedlex"
   "wtf8"
 ]

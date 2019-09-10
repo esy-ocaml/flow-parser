@@ -6,6 +6,7 @@
  *)
 
 open Ast
+open Flow_parser_sedlex
 module Error = Parse_error
 module SSet = Set.Make(String)
 
