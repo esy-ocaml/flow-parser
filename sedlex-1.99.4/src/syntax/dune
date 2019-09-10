@@ -2,7 +2,7 @@
  (name Flow_parser_sedlex_ppx)
  (public_name flow-parser.sedlex_ppx)
  (kind ppx_rewriter)
- (libraries flow-parser.ppx_tools_versioned.metaquot_405 ocaml-migrate-parsetree Flow_parser_sedlex)
+ (libraries flow-parser.ppx_tools_versioned.metaquot_405 Flow_parser_sedlex)
  (ppx_runtime_libraries Flow_parser_sedlex)
  (preprocess
   (pps flow-parser.ppx_tools_versioned.metaquot_405))
