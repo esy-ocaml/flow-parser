@@ -3,28 +3,15 @@
   "version": "0.76.2",
   "description": "esy package for flow-parser",
   "license": "MIT",
-  "esy": {
-    "build": [
-      [
-        "dune",
-        "build",
-        "-p",
-        "flow-parser"
-      ]
-    ]
-  },
+  "esy": { "build": [ [ "dune", "build", "-p", "flow-parser" ] ] },
   "dependencies": {
-    "@opam/gen": "*",
-    "@opam/wtf8": "*",
     "@opam/dune": "*",
+    "@opam/gen": "*",
     "@opam/ocaml-migrate-parsetree": "*",
-    "ocaml": ">= 4.4.0 < 4.8.0"
+    "@opam/stdlib-shims": "0.1.0",
+    "@opam/wtf8": "*",
+    "ocaml": ">= 4.4.0"
   },
-  "notes": {
-    "@opam/sedlex": ">= 1.99.4 < 2.0"
-  },
-  "devDependencies": {
-    "@opam/merlin": "*",
-    "ocaml": "4.7.1004"
-  }
+  "notes": { "@opam/sedlex": ">= 1.99.4 < 2.0" },
+  "devDependencies": { "@opam/merlin": "*", "ocaml": "4.8.1000" }
 }

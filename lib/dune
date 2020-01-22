@@ -1,7 +1,7 @@
 (library
  (name        Flow_parser)
   (public_name flow-parser)
-  (libraries flow-parser.sedlex wtf8)
+  (libraries flow-parser.sedlex wtf8 stdlib-shims)
   (modules (:standard \ flow_parser_js flow_parser_dot_js))
   (preprocess (pps flow-parser.sedlex_ppx))
   (flags (:standard (-w -39)))
