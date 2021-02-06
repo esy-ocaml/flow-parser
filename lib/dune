@@ -1,9 +1,9 @@
 (library
  (name        Flow_parser)
   (public_name flow-parser)
-  (libraries flow-parser.sedlex wtf8)
+  (libraries sedlex wtf8)
   (modules (:standard \ flow_parser_js flow_parser_dot_js))
-  (preprocess (pps flow-parser.sedlex_ppx))
+  (preprocess (pps ppx_gen_rec ppx_deriving.std sedlex.ppx))
   (flags (:standard (-w -39)))
  )
 
