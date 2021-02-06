@@ -18,13 +18,17 @@
     "@opam/wtf8": "*",
     "@opam/dune": "*",
     "@opam/ocaml-migrate-parsetree": "*",
-    "ocaml": ">= 4.4.0 < 4.8.0"
+    "ocaml": "4.10.2000",
+    "@opam/ppx_tools_versioned": "*",
+    "@opam/sedlex": "*",
+    "@opam/ppx_gen_rec": "*",
+    "@opam/ppx_deriving": "*"
   },
   "notes": {
     "@opam/sedlex": ">= 1.99.4 < 2.0"
   },
   "devDependencies": {
     "@opam/merlin": "*",
-    "ocaml": "4.7.1004"
+    "ocaml": "4.10.2000"
   }
 }

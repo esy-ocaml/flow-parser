@@ -1,19 +1,18 @@
-(**
- * Copyright (c) 2013-present, Facebook, Inc.
+(*
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *)
 
-open Flow_parser_sedlex
-
 type t = {
-  lex_source            : File_key.t option;
-  lex_lb                : Sedlexing.lexbuf;
-  lex_bol               : bol;
-  lex_in_comment_syntax : bool;
+  lex_source: File_key.t option;
+  lex_lb: Sedlexing.lexbuf;
+  lex_bol: bol;
+  lex_in_comment_syntax: bool;
   lex_enable_comment_syntax: bool;
-  lex_state             : lex_state;
+  lex_state: lex_state;
+  lex_last_loc: Loc.t;
 }
 
 (* bol = Beginning Of Line *)
@@ -22,24 +21,25 @@ and bol = {
   offset: int;
 }
 
-and lex_state = {
-  lex_errors_acc: (Loc.t * Parse_error.t) list;
-  lex_comments_acc: Loc.t Ast.Comment.t list;
-}
+and lex_state = { lex_errors_acc: (Loc.t * Parse_error.t) list }
 
-let empty_lex_state = {
-  lex_errors_acc = [];
-  lex_comments_acc = [];
-}
+let empty_lex_state = { lex_errors_acc = [] }
 
-let new_lex_env lex_source lex_lb ~enable_types_in_comments = {
-  lex_source;
-  lex_lb;
-  lex_bol = { line = 1; offset = 0};
-  lex_in_comment_syntax = false;
-  lex_enable_comment_syntax = enable_types_in_comments;
-  lex_state = empty_lex_state;
-}
+(* The lex_last_loc should initially be set to the beginning of the first line, so that
+   comments on the first line are reported as not being on a new line. *)
+let initial_last_loc =
+  { Loc.source = None; start = { Loc.line = 1; column = 0 }; _end = { Loc.line = 1; column = 0 } }
+
+let new_lex_env lex_source lex_lb ~enable_types_in_comments =
+  {
+    lex_source;
+    lex_lb;
+    lex_bol = { line = 1; offset = 0 };
+    lex_in_comment_syntax = false;
+    lex_enable_comment_syntax = enable_types_in_comments;
+    lex_state = empty_lex_state;
+    lex_last_loc = initial_last_loc;
+  }
 
 (* copy all the mutable things so that we have a distinct lexing environment
    that does not interfere with ordinary lexer operations *)
@@ -49,43 +49,47 @@ let clone env =
 
 let get_and_clear_state env =
   let state = env.lex_state in
-  let env = if state != empty_lex_state
-    then { env with lex_state = empty_lex_state }
-    else env
+  let env =
+    if state != empty_lex_state then
+      { env with lex_state = empty_lex_state }
+    else
+      env
   in
-  env, state
+  (env, state)
 
 let lexbuf env = env.lex_lb
+
 let source env = env.lex_source
+
 let state env = env.lex_state
+
 let line env = env.lex_bol.line
+
 let bol_offset env = env.lex_bol.offset
+
 let is_in_comment_syntax env = env.lex_in_comment_syntax
+
 let is_comment_syntax_enabled env = env.lex_enable_comment_syntax
+
 let in_comment_syntax is_in env =
-  if is_in <> env.lex_in_comment_syntax
-  then { env with lex_in_comment_syntax = is_in }
-  else env
+  if is_in <> env.lex_in_comment_syntax then
+    { env with lex_in_comment_syntax = is_in }
+  else
+    env
 
 (* TODO *)
 let debug_string_of_lexbuf _lb = ""
 
-let debug_string_of_lex_env (env: t) =
-  let source = match (source env) with
+let debug_string_of_lex_env (env : t) =
+  let source =
+    match source env with
     | None -> "None"
     | Some x -> Printf.sprintf "Some %S" (File_key.to_string x)
   in
   Printf.sprintf
-    "{\n  \
-      lex_source = %s\n  \
-      lex_lb = %s\n  \
-      lex_in_comment_syntax = %b\n  \
-      lex_enable_comment_syntax = %b\n  \
-      lex_state = {errors = (count = %d); comments = (count = %d)}\n\
-    }"
+    "{\n  lex_source = %s\n  lex_lb = %s\n  lex_in_comment_syntax = %b\n  lex_enable_comment_syntax = %b\n  lex_state = {errors = (count = %d)}\n}"
     source
     (debug_string_of_lexbuf env.lex_lb)
     (is_in_comment_syntax env)
     (is_comment_syntax_enabled env)
     (List.length (state env).lex_errors_acc)
-    (List.length (state env).lex_comments_acc)
